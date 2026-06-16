@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+#TODO
+
+adicionar() {
+	:
+}
+
+listar() {
+	:
+}
+
+conectar() {
+	:
+}
+
+
+main() {
+
+	if [ $# -eq 0 ]; then
+	echo "Uso:  ./ssh-manager.sh  [adicionar|listar|conectar]"
+	exit 1
+	fi
+
+	case "$1" in
+		"adicionar") adicionar ;;
+		"listar") listar  ;;
+		"conectar") conectar  ;;
+	*) echo "Opção inválida" ; exit 1 ;;
+	esac
+
+}
+main "$@"
