@@ -1,0 +1,38 @@
+# ssh-manager
+
+- Script feito para auxíliar demandas diárias de conexão remota
+
+# O que faz
+
+- Ele auxília numa conexão nova remota, registra e deixa salvo em um histórico para eventualmente se conectar e otimizar a escalabilidade de workflows em diversas conexões remotas
+
+## Como usar
+
+Dar permissão ao script:
+```bash
+chmod +x ssh-manager
+```
+
+Adicionar um servidor:
+```bash
+./ssh-manager adicionar dev-server augusto 100.200.1.300 50
+```
+
+Listar servidores salvos:
+```bash
+./ssh-manager listar
+```
+
+Conectar em um servidor:
+```bash
+./ssh-manager conectar dev-server
+```
+
+**2.** Falta os comandos nos Requisitos:
+```markdown
+## Requisitos
+
+- Linux (testado no Ubuntu/Debian)
+- Bash 4.0+
+- Comandos: `ssh`, `awk`
+```

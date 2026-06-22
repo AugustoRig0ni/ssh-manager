@@ -5,15 +5,32 @@ set -euo pipefail
 #TODO
 
 adicionar() {
-	:
+
+	local alias="$1"
+	local  usuario="$2"
+	local ip="$3"
+	local porta="$4"
+
+	echo "$alias|$usuario|$ip|$porta" >> servers.conf
+
 }
 
 listar() {
-	:
+
+	awk -F'|' '{print $1 " → " $2 "@" $3 ":" $4}' servers.conf
+
 }
 
 conectar() {
-	:
+
+    local apelido="$1"
+    local linha=$(awk -F'|' -v alias="$apelido" '$1 == alias {print $2, $3, $4}' servers.conf | head -1)
+    local usuario=$(echo "$linha" | awk '{print $1}')
+    local ip=$(echo "$linha" | awk '{print $2}')
+    local porta=$(echo "$linha" | awk '{print $3}')
+
+    ssh -p "$porta" "$usuario@$ip"
+
 }
 
 
@@ -25,9 +42,9 @@ main() {
 	fi
 
 	case "$1" in
-		"adicionar") adicionar ;;
-		"listar") listar  ;;
-		"conectar") conectar  ;;
+		"adicionar") adicionar "$2" "$3" "$4" "$5" ;;
+		"listar") listar ;;
+		"conectar") conectar "$2" ;;
 	*) echo "Opção inválida" ; exit 1 ;;
 	esac
 
